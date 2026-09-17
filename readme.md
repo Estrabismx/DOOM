@@ -1,6 +1,6 @@
 # DOOM Web Port
 
-Este directorio contiene una adaptación experimental del flujo principal de Linux DOOM a JavaScript para ejecutarse como sitio estático en GitHub Pages. `main.js` conserva conceptos del motor original —tics de 35 Hz, eventos de teclado, lectura de lumps WAD, jugador, líneas del mapa y proyección de paredes— y dibuja el resultado en un `<canvas>`. La página carga automáticamente `Doom1.WAD` desde la raíz del despliegue.
+Este directorio contiene una traducción web del flujo principal de Linux DOOM a JavaScript para ejecutarse como sitio estático en GitHub Pages. `main.js` conserva la organización del motor original —tics de 35 Hz, lectura de la geometría por mapa, estructuras `vertex_t`/`line_t`/`sector_t`, spawn del jugador, movimiento con radio y bloqueo de líneas de `p_map.c`, y proyección de paredes de `r_main.c`— adaptando únicamente la salida X11 a Canvas. La página carga automáticamente `Doom1.WAD` desde la raíz del despliegue.
 
 `Doom1.WAD` debe proceder de una copia que tengas legalmente. El repositorio conserva el código fuente bajo la licencia indicada en `LICENSE.TXT`; no redistribuyas WAD comerciales con el sitio sin autorización.
 
@@ -34,9 +34,9 @@ Un enlace que funciona en una pestaña no garantiza que `fetch()` pueda leerlo. 
 
 ## Datos WAD compatibles
 
-El visor busca un marcador de mapa (`E1M1`–`E4M9` o `MAP01`–`MAP99`) y los lumps `VERTEXES`, `LINEDEFS` y, opcionalmente, `THINGS`. El primer `THINGS` de tipo 1 se usa como posición y ángulo inicial del jugador. Se valida la cabecera `IWAD`/`PWAD`, el directorio y los límites de cada lump antes de leerlos.
+El visor busca un marcador de mapa (`E1M1`–`E4M9` o `MAP01`–`MAP99`) y lee los lumps que siguen a ese marcador, sin mezclar los `VERTEXES`, `LINEDEFS`, `SIDEDEFS`, `SECTORS` o `THINGS` de otros mapas. El primer `THINGS` de tipo 1 se usa como posición y ángulo inicial del jugador. Se valida la cabecera `IWAD`/`PWAD`, el directorio y los límites de cada lump antes de leerlos.
 
-Esta versión es un port de renderizado experimental: no pretende ser todavía un reemplazo completo de todas las armas, enemigos, sonido, menús, texturas, BSP, colisiones y partidas guardadas del ejecutable C. Los mapas grandes o WAD con estructuras no estándar pueden mostrar solo una parte de la geometría.
+Esta versión traduce el núcleo de movimiento y renderizado de líneas, pero todavía no es un reemplazo completo de armas, enemigos, sonido, menús, texturas, traversal BSP, partidas guardadas, efectos especiales ni red del ejecutable C. La geometría se dibuja desde las líneas del mapa; los mapas grandes pueden requerir una futura implementación de clipping y traversal BSP para igualar el rendimiento y el orden exactos del renderer original.
 
 ## Publicar
 
