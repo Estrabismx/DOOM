@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Visor web experimental del motor DOOM para GitHub Pages">
+    <title>DOOM Web Port</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <p class="eyebrow">LINUXDOOM / WEB PORT</p>
+        <h1>DOOM <span>en el navegador</span></h1>
+        <p class="intro">Una implementación JavaScript del bucle de juego y del renderizado clásico con Doom1.WAD.</p>
+      </header>
+
+      <section class="game-panel" aria-label="Visor del juego">
+        <div class="screen-wrap">
+          <canvas id="game-canvas" width="640" height="400" aria-label="Pantalla del juego"></canvas>
+          <div id="screen-message" class="screen-message">Cargando Doom1.WAD...</div>
+        </div>
+        <div class="hud">
+          <span id="status" role="status">Listo. No se ha cargado ningún WAD.</span>
+          <span id="map-name">DEMO</span>
+        </div>
+      </section>
+
+      <section class="help-grid">
+        <article>
+          <h2>Controles</h2>
+          <p><kbd>W</kbd>/<kbd>S</kbd> avanzar y retroceder · <kbd>A</kbd>/<kbd>D</kbd> girar · <kbd>←</kbd>/<kbd>→</kbd> girar</p>
+        </article>
+        <article>
+          <h2>Importante</h2>
+          <p>Este port carga automáticamente <code>Doom1.WAD</code> desde la raíz del sitio. Consulta <a href="readme.md">readme.md</a> para publicarlo correctamente.</p>
+        </article>
+      </section>
+    </main>
+    <script src="main.js" defer></script>
+  </body>
+</html>
